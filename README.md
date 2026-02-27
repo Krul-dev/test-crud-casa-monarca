@@ -27,3 +27,21 @@ Set them in Apache virtual host/env or in your shell before starting PHP.
 ### 3) Open in browser
 Serve the repository from Apache and visit:
 `http://localhost/test-crud-casa-monarca/`
+
+## Session Dev Helpers
+
+Use these helper scripts to bind this repository into `/srv/http/test-crud-casa-monarca` for one session:
+
+```bash
+./dev-on
+```
+
+This enables the bind mount and starts `httpd`.
+
+When done:
+
+```bash
+./dev-off
+```
+
+This unmounts the bind mount (if active) and stops `httpd`.

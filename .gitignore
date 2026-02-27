@@ -14,3 +14,6 @@ Thumbs.db
 # Ignore instructions to local AI Agents
 AGENTS.md
 
+# Local dev helper scripts
+dev-on
+dev-off
