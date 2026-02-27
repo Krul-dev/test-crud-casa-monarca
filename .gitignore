@@ -10,3 +10,7 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Ignore instructions to local AI Agents
+AGENTS.md
+
