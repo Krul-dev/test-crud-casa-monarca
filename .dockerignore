@@ -1,0 +1,7 @@
+.git
+.gitignore
+.dockerignore
+*.log
+.env
+node_modules
+vendor
