@@ -9,5 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE USER IF NOT EXISTS 'crud_user'@'localhost' IDENTIFIED BY 'crud_pass';
+CREATE USER IF NOT EXISTS 'crud_user'@'%' IDENTIFIED BY 'crud_pass';
 GRANT ALL PRIVILEGES ON test_crud.* TO 'crud_user'@'localhost';
+GRANT ALL PRIVILEGES ON test_crud.* TO 'crud_user'@'%';
 FLUSH PRIVILEGES;

@@ -16,13 +16,13 @@ sudo mariadb < schema.sql
 
 ### 2) Configure database credentials
 The app reads:
-- `DB_HOST` (default: `localhost`)
+- `DB_HOST` (default: `127.0.0.1`)
 - `DB_PORT` (default: `3306`)
 - `DB_NAME` (default: `test_crud`)
 - `DB_USER` (default: `crud_user`)
 - `DB_PASS` (default: `crud_pass`)
 
-Set them in Apache virtual host/env or in your shell before starting PHP.
+Set them in Apache virtual host/env or in your shell before starting PHP. In Docker Compose, set `DB_HOST` to your DB service name (for example `db`), not `localhost`.
 
 ### 3) Open in browser
 Serve the repository from Apache and visit:
@@ -37,6 +37,7 @@ Use these helper scripts to bind this repository into `/srv/http/test-crud-casa-
 ```
 
 This enables the bind mount and starts `httpd`.
+It also starts `mariadb`/`mysql` (whichever service is available).
 
 When done:
 
@@ -45,3 +46,4 @@ When done:
 ```
 
 This unmounts the bind mount (if active) and stops `httpd`.
+It also stops `mariadb`/`mysql` (whichever service is available).
