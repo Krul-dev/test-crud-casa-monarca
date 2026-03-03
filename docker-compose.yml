@@ -1,0 +1,25 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_NAME: app
+      DB_USER: appuser
+      DB_PASS: apppass
+
+  db:
+    image: mariadb:11
+    environment:
+      MARIADB_DATABASE: app
+      MARIADB_USER: appuser
+      MARIADB_PASSWORD: apppass
+      MARIADB_ROOT_PASSWORD: rootpass
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:

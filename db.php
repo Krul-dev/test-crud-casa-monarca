@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-$host = getenv('DB_HOST') ?: '127.0.0.1';
+$host = getenv('DB_HOST') ?: 'db';
 $port = getenv('DB_PORT') ?: '3306';
 $dbName = getenv('DB_NAME') ?: 'test_crud';
 $user = getenv('DB_USER') ?: 'crud_user';
