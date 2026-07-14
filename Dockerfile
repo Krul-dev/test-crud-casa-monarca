@@ -1,7 +1,8 @@
+# Start with the official PHP image with Apache
 FROM php:8.2-apache
 
-# Install MySQL drivers for PHP
-RUN docker-php-ext-install pdo_mysql mysqli
+# Install MySQL drivers for PDO
+RUN docker-php-ext-install pdo_mysql
 
-# Copy your app into the container
-COPY . /var/www/html/
+# Copy the application into the web server's document root
+COPY app/ /var/www/html/

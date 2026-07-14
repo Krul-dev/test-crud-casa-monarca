@@ -1,7 +1,20 @@
+# Ignore files and directories that should not be included in the Docker build context
 .git
 .gitignore
 .dockerignore
-*.log
+
+# Secrets
 .env
+
+# Logs
+*.log
+
+# Editor
+*.swp
+*.swo
+
+# For macOS users
+.DS_Store
+
+# Node
 node_modules
-vendor

@@ -1,25 +1,56 @@
+# Docker Compose configuration for the CRUD application.
+#
+# Responsibilities:
+# - Build and run the PHP/Apache application.
+# - Run the MariaDB database.
+# - Connect both services on a private network.
+# - Create persistent database storage.
+
 services:
+  # Build and run the PHP/Apache application from the Dockerfile in the current directory.
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+
     ports:
       - "8080:80"
-    depends_on:
-      - db
+
     environment:
       DB_HOST: db
+      DB_PORT: 3306
       DB_NAME: app
       DB_USER: appuser
       DB_PASS: apppass
 
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # Run and configure the MariaDB database service.
   db:
     image: mariadb:11
+
     environment:
+      MARIADB_ROOT_PASSWORD: rootpass
       MARIADB_DATABASE: app
       MARIADB_USER: appuser
       MARIADB_PASSWORD: apppass
-      MARIADB_ROOT_PASSWORD: rootpass
+
+    healthcheck:
+      test:
+        - CMD
+        - healthcheck.sh
+        - --connect
+        - --innodb_initialized
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
     volumes:
       - dbdata:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
 
+# Create a named volume for persistent database storage.
 volumes:
   dbdata:
